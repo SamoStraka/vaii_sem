@@ -1,0 +1,97 @@
+@import "variables.css";
+@import "menu.css";
+
+body {
+    background-color: var(--natural);
+}
+
+.home-reached {
+    background-color: var(--red);
+    padding: 1rem 0;
+}
+
+.home-reached i {
+    color: var(--natural);
+    font-size: 2rem;
+}
+
+.home-reached h5 {
+    font-size: 2.5rem;
+    color: var(--natural);
+    font-weight: 600;
+}
+
+.home-reached h6 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--brown);
+}
+
+.home-banner {
+    height: 45vh;
+    color: var(--natural);
+    background: url("../img/banner.jpg") no-repeat bottom left;
+    background-size: cover;
+    position: relative;
+}
+
+.home-banner h3 {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    font-size: 2.5rem;
+}
+
+.home-banner span {
+    color: var(--red);
+    text-transform: uppercase;
+}
+
+.home-info {
+    padding: 2rem;
+}
+
+.home-info h2 {
+    color: var(--gray);
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.home-info p {
+    font-size: 1.3rem;
+}
+
+@media (min-width: 925px) {
+    .home-info {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+.home-awards {
+    background-color: var(--brown);
+    padding: 1rem;
+}
+
+.home-awards .row {
+    padding: .5rem;
+    background-color: var(--natural);
+    border-radius: .5rem;
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.home-awards i {
+    color: var(--red);
+    font-size: 2.5rem;
+}
+
+.home-awards h2 {
+    color: var(--natural);
+}
+
+.home-awards p {
+    color: var(--gray);
+    margin: 0;
+    font-size: 1.5rem;
+}

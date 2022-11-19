@@ -1,0 +1,36 @@
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+.navbar {
+    z-index: 10;
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+    margin-right: 2rem;
+}
+
+.nav-link{
+    color: var(--gray);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: var(--brown);
+}
+
+.link-active {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.navbar-text {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 15px;
+}
+
