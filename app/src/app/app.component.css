@@ -1,0 +1,137 @@
+.navbar {
+  z-index: 10;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+  margin-right: 2rem;
+}
+
+.nav-link{
+  color: var(--gray);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: var(--brown);
+}
+
+.link-active {
+  color: var(--red);
+  font-weight: 600;
+}
+
+.navbar-text {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 15px;
+}
+
+body {
+  background-color: var(--natural);
+}
+
+.start-column {
+  position: absolute;
+  background-color: var(--brown);
+  width: 25%;
+  height: 100vh;
+
+  top: 0;
+  left: 50%;
+}
+
+.book {
+  position: absolute;
+  width: 100px;
+  height: 130px;
+
+  top: 15%;
+  right: 0;
+  transform: translate(50px, 0);
+  transform: rotate(20deg);
+
+  background: url("../assets/img/book.png") no-repeat;
+  background-size: contain;
+}
+
+.start-text {
+  position: absolute;
+  width: 70%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  color: var(--gray);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-text h2 {
+  text-align: center;
+}
+
+.start-text span {
+  text-transform: uppercase;
+}
+
+.start-text h2 span:nth-child(3){
+  color: var(--red);
+  font-size: 2rem;
+}
+
+.start-img {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+
+  width: 122px;
+  height: 300px;
+  background: url("../assets/img/woman_reading.png") no-repeat right bottom;
+  background-size: contain;
+}
+
+.start-reservation {
+  position: absolute;
+  bottom: 15vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.start-reservation a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: .5rem;
+  color: var(--natural);
+
+  background-color: var(--red);
+
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.start-reservation a:hover {
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+}
+
+@media (min-width: 800px) {
+
+  .start-text h2 span:nth-child(3){
+    font-size: 4rem;
+  }
+
+  .book {
+    top: 25%;
+    right: 0;
+    width: 200px;
+    height: 257px;
+  }
+
+  .start-reservation a {
+    font-size: 3rem;
+  }
+}
+

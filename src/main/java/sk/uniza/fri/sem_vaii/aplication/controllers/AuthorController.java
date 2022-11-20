@@ -1,10 +1,7 @@
 package sk.uniza.fri.sem_vaii.aplication.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sk.uniza.fri.sem_vaii.aplication.repositories.AuthorCrudRepository;
 import sk.uniza.fri.sem_vaii.domain.Author;
 
@@ -18,12 +15,41 @@ public class AuthorController {
 
     @GetMapping("{id}")
     Author getAuthor(@PathVariable Long id) {
-        Optional<Author> author =authorCrudRepository.findById(id);
+        Optional<Author> author = authorCrudRepository.findById(id);
         return author.orElseThrow(RuntimeException::new);
     }
 
     @GetMapping()
-    Iterable<Author> getAuthors() {
-        return authorCrudRepository.findAll();
+    Iterable<Author> getAuthors(@RequestParam(name="name", required = false) String name) {
+        if (name == null  || name.isBlank()) {
+            return authorCrudRepository.findAll();
+        } else {
+            return authorCrudRepository.findByName(name);
+        }
+    }
+
+    @PostMapping()
+    Author newAuthor(@RequestBody Author author) {
+        return authorCrudRepository.save(author);
+    }
+
+    @PutMapping("{id}")
+    Author replaceAuthor(@RequestBody Author newAuthor, @PathVariable Long id) {
+        return authorCrudRepository.findById(id)
+                .map(author -> {
+                    author.setName(newAuthor.getName());
+                    author.setLastName(newAuthor.getLastName());
+                    author.setAuthorBooks(newAuthor.getAuthorBooks());
+                    return authorCrudRepository.save(author);
+                })
+                .orElseGet(() -> {
+                    newAuthor.setId(id);
+                    return  authorCrudRepository.save(newAuthor);
+                });
+    }
+
+    @DeleteMapping("{id}")
+    void deleteAuthor(@PathVariable Long id) {
+        authorCrudRepository.deleteById(id);
     }
 }
