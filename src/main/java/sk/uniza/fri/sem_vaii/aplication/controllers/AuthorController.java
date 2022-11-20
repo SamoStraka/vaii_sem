@@ -39,6 +39,7 @@ public class AuthorController {
                 .map(author -> {
                     author.setName(newAuthor.getName());
                     author.setLastName(newAuthor.getLastName());
+                    author.setInfo(newAuthor.getInfo());
                     author.setAuthorBooks(newAuthor.getAuthorBooks());
                     return authorCrudRepository.save(author);
                 })

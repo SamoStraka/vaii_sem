@@ -18,6 +18,7 @@ public class Author {
 
     @Column(name = "last_name")
     private String lastName;
+    private String info;
 
     @ManyToMany
     @JoinTable(

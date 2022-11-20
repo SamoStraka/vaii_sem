@@ -8,6 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
 import { ContactComponent } from './contact/contact.component';
 import { IndexPageComponent } from './index-page/index-page.component';
+import {HttpClientModule} from "@angular/common/http";
+import { NewAuthorComponent } from './new-author/new-author.component';
+import {FormsModule} from "@angular/forms";
+import { EditAuthorComponent } from './edit-author/edit-author.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,15 @@ import { IndexPageComponent } from './index-page/index-page.component';
     HomeComponent,
     BooksComponent,
     ContactComponent,
-    IndexPageComponent
+    IndexPageComponent,
+    NewAuthorComponent,
+    EditAuthorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,37 @@
+<h2 class="text-center text-md-left">
+  Vytvorenie nového autora
+</h2>
+<div class="contact-form d-flex justify-content-center">
+  <form (submit)="submit(form)"
+        #form=ngForm [class.was-validated]="form.submitted || form.touched">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="md-form mb-0">
+          <label class="" for="name">Meno</label>
+          <input class="form-control" id="name" name="name" type="text" [(ngModel)]="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="md-form mb-0">
+          <label class="" for="lastName">Priezvisko</label>
+          <input class="form-control" id="lastName" name="lastName" type="text"  [(ngModel)]="lastName">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="md-form">
+          <label for="info">Info o autorovi</label>
+          <textarea class="form-control md-textarea" id="info" name="info" rows="5" [(ngModel)]="info"></textarea>
+        </div>
+
+      </div>
+    </div>
+    <button type="submit" class="text-center text-md-left btn-submit">
+      Odoslať
+    </button>
+  </form>
+</div>

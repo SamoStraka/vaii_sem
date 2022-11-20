@@ -69,6 +69,12 @@ body {
   color: var(--red);
 }
 
+.author_icon {
+  margin-right: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
 @media (min-width: 925px) {
   .quote {
     width: 70%;

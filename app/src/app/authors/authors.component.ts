@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthorsService} from "../authors.service";
+import {Author} from "../author";
 
 @Component({
   selector: 'app-authors',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorsComponent implements OnInit {
 
-  constructor() { }
+  authors: Author[] = []
+  try: number[] = [1, 2, 3, 4]
+
+  constructor(private readonly authorService: AuthorsService) {
+   this.reload()
+  }
+
+  private reload() {
+    this.authorService.getAll()
+      .subscribe(value => {
+       this.authors = value
+      })
+  }
 
   ngOnInit(): void {
   }
 
+  cutString(text:string): string {
+    return text.length > 180 ? text.substring(0, 180) + '...' : text
+  }
+
+  delete(author:Author) {
+      if(confirm(`Delete item ${author.name} ${author.lastName}?`)) {
+        this.authorService.delete(author)
+          .subscribe(() => {
+            this.reload()
+          })
+      }
+  }
 }

@@ -3,20 +3,19 @@
   <input class="form-control" type="text" placeholder="Search" aria-label="Search">
 </div>
 <div class="administration d-flex justify-content-center">
-  <a class="btn btn-primary" href="admin/authors.html">Administrácia</a>
+  <a class="btn btn-primary" routerLink="new">Nový autor</a>
 </div>
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 g-5">
-    <div class="col author-detail">
+    <div *ngFor="let author of authors" class="col author-detail">
       <div class="row d-flex align-items-center">
         <div class="col-3 author-photo">
           <img src="../../assets/img/face.jpg" alt="fake img">
         </div>
         <div class="col-9">
-          <h3>Douglas Adams</h3>
+          <h3>{{author.name + ' ' + author.lastName}}</h3>
           <p>
-            Douglas Noël Adams bol spisovateľom, rozhlasovým dramatikom a humoristom.
-            Narodil sa 11. marca v roku 1952 v Cambridge vo Veľkej Británii. ...
+            {{cutString(author.info)}}
             <a href="#">
               viac
             </a>
@@ -37,160 +36,9 @@
           <p>Nazov knihy</p>
         </div>
       </div>
-    </div>
-    <div class="col author-detail">
-      <div class="row d-flex align-items-center">
-        <div class="col-3 author-photo">
-          <img src="../../assets/img/face.jpg" alt="fake img">
-        </div>
-        <div class="col-9">
-          <h3>Douglas Adams</h3>
-          <p>
-            Douglas Noël Adams bol spisovateľom, rozhlasovým dramatikom a humoristom.
-            Narodil sa 11. marca v roku 1952 v Cambridge vo Veľkej Británii. ...
-            <a href="#">
-              viac
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="author-books d-flex justify-content-around">
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-      </div>
-    </div>
-    <div class="col author-detail">
-      <div class="row d-flex align-items-center">
-        <div class="col-3 author-photo">
-          <img src="../../assets/img/face.jpg" alt="fake img">
-        </div>
-        <div class="col-9">
-          <h3>Douglas Adams</h3>
-          <p>
-            Douglas Noël Adams bol spisovateľom, rozhlasovým dramatikom a humoristom.
-            Narodil sa 11. marca v roku 1952 v Cambridge vo Veľkej Británii. ...
-            <a href="#">
-              viac
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="author-books d-flex justify-content-around">
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-      </div>
-    </div>
-    <div class="col author-detail">
-      <div class="row d-flex align-items-center">
-        <div class="col-3 author-photo">
-          <img src="../../assets/img/face.jpg" alt="fake img">
-        </div>
-        <div class="col-9">
-          <h3>Douglas Adams</h3>
-          <p>
-            Douglas Noël Adams bol spisovateľom, rozhlasovým dramatikom a humoristom.
-            Narodil sa 11. marca v roku 1952 v Cambridge vo Veľkej Británii. ...
-            <a href="#">
-              viac
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="author-books d-flex justify-content-around">
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-      </div>
-    </div>
-    <div class="col author-detail">
-      <div class="row d-flex align-items-center">
-        <div class="col-3 author-photo">
-          <img src="../../assets/img/face.jpg" alt="fake img">
-        </div>
-        <div class="col-9">
-          <h3>Douglas Adams</h3>
-          <p>
-            Douglas Noël Adams bol spisovateľom, rozhlasovým dramatikom a humoristom.
-            Narodil sa 11. marca v roku 1952 v Cambridge vo Veľkej Británii. ...
-            <a href="#">
-              viac
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="author-books d-flex justify-content-around">
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-      </div>
-    </div>
-    <div class="col author-detail">
-      <div class="row d-flex align-items-center">
-        <div class="col-3 author-photo">
-          <img src="../../assets/img/face.jpg" alt="fake img">
-        </div>
-        <div class="col-9">
-          <h3>Douglas Adams</h3>
-          <p>
-            Douglas Noël Adams bol spisovateľom, rozhlasovým dramatikom a humoristom.
-            Narodil sa 11. marca v roku 1952 v Cambridge vo Veľkej Británii. ...
-            <a href="#">
-              viac
-            </a>
-          </p>
-        </div>
-      </div>
-      <div class="author-books d-flex justify-content-around">
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
+      <div class="admin_buttons d-flex justify-content-end">
+        <a class="author_icon" [routerLink]="[author.id, 'edit']"><i class="bi bi-pencil-fill"></i></a>
+        <a class="author_icon" (click)="delete(author)"><i class="bi bi-trash-fill"></i></a>
       </div>
     </div>
   </div>
