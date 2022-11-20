@@ -1,0 +1,77 @@
+body {
+  background-color: var(--natural);
+}
+
+.search {
+  margin-bottom: 4rem;
+}
+
+.search input{
+  width: 50%;
+}
+
+.search h1 {
+  color: var(--gray);
+}
+
+.author-photo img{
+  width: 100%;
+}
+
+.author-detail {
+  padding: 1rem;
+}
+
+.author-detail h3 {
+  color: var(--red);
+}
+
+.author-detail a {
+  text-decoration: none;
+  color: var(--red);
+}
+
+.author-detail p {
+  color: var(--gray);
+}
+
+.author-detail a:hover {
+  color: var(--pink );
+}
+
+.author-books div {
+  width: 30%;
+  margin-top: 1rem;
+}
+
+.author-books div img {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.author-books p {
+  font-size: .8rem;
+}
+
+.quote {
+  margin-top: 3rem;
+}
+
+.quote h4 {
+  color: var(--brown);
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.quote p {
+  text-align: right;
+  color: var(--red);
+}
+
+@media (min-width: 925px) {
+  .quote {
+    width: 70%;
+    margin: 3rem auto 0 auto;
+  }
+}

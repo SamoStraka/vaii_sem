@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="">
+    <a class="navbar-brand" routerLink="index" routerLinkActive="link-active">
       <i class="bi bi-book"></i>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,16 +9,16 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="home.html">Domov</a>
+          <a class="nav-link" aria-current="page" routerLink="home" routerLinkActive="link-active">Domov</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Knihy</a>
+          <a class="nav-link" routerLink="books" routerLinkActive="link-active">Knihy</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="authors" >Autori</a>
+          <a class="nav-link" routerLink="authors" routerLinkActive="link-active">Autori</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Kontakt</a>
+          <a class="nav-link" routerLink="contact" routerLinkActive="link-active">Kontakt</a>
         </li>
       </ul>
       <span class="navbar-text">
@@ -27,32 +27,7 @@
     </div>
   </div>
 </nav>
-<div class="start-column">
-  <div class="book">
 
-  </div>
-</div>
-<div class="start-text">
-  <h2>
-    Knihy pre každého
-    <br>
-    <span>
-                ne
-            </span>
-    <span>
-                experta
-            </span>
-  </h2>
-  <p>
-
-  </p>
-</div>
-<div class="start-img">
-
-</div>
-
-<div class="start-reservation">
-  <a href="rezervacia.html">
-    Rezervuj si knihu
-  </a>
+<div>
+  <router-outlet></router-outlet>
 </div>
