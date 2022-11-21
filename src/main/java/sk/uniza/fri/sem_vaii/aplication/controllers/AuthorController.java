@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import sk.uniza.fri.sem_vaii.aplication.repositories.AuthorCrudRepository;
 import sk.uniza.fri.sem_vaii.domain.Author;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -29,12 +30,12 @@ public class AuthorController {
     }
 
     @PostMapping()
-    Author newAuthor(@RequestBody Author author) {
+    Author newAuthor(@Valid @RequestBody Author author) {
         return authorCrudRepository.save(author);
     }
 
     @PutMapping("{id}")
-    Author replaceAuthor(@RequestBody Author newAuthor, @PathVariable Long id) {
+    Author replaceAuthor(@Valid @RequestBody Author newAuthor, @PathVariable Long id) {
         return authorCrudRepository.findById(id)
                 .map(author -> {
                     author.setName(newAuthor.getName());
