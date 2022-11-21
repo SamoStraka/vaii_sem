@@ -81,3 +81,12 @@ body {
     margin: 3rem auto 0 auto;
   }
 }
+
+.btn-submit {
+  background-color: var(--red);
+  color: var(--natural);
+}
+
+.btn-submit:hover {
+  background-color: var(--pink);
+}
