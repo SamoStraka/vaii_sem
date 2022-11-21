@@ -31,6 +31,10 @@ public class AuthorController {
 
     @PostMapping()
     Author newAuthor(@Valid @RequestBody Author author) {
+        if (authorCrudRepository.existsById(author.getId())) {
+            throw new RuntimeException();
+        }
+
         return authorCrudRepository.save(author);
     }
 
