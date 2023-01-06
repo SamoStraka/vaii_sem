@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sk.uniza.fri.sem_vaii.aplication.repositories.AuthorCrudRepository;
 import sk.uniza.fri.sem_vaii.domain.Author;
+import sk.uniza.fri.sem_vaii.domain.Book;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -13,6 +14,12 @@ import java.util.Optional;
 public class AuthorController {
     @Autowired
     AuthorCrudRepository authorCrudRepository;
+
+    @GetMapping("{id}/books")
+    Iterable<Book> getAuthorBooks(@PathVariable Long id) {
+        Optional<Author> author = authorCrudRepository.findById(id);
+        return author.orElseThrow(RuntimeException::new).getAuthorBooks();
+    }
 
     @GetMapping("{id}")
     Author getAuthor(@PathVariable Long id) {

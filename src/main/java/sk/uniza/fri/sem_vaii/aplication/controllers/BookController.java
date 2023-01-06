@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sk.uniza.fri.sem_vaii.aplication.repositories.BookCrudRepository;
 import sk.uniza.fri.sem_vaii.domain.Book;
+import sk.uniza.fri.sem_vaii.domain.Genre;
 
 import java.util.Optional;
 
@@ -15,6 +16,12 @@ import java.util.Optional;
 public class BookController {
     @Autowired
     BookCrudRepository bookRepository;
+
+    @GetMapping("{id}/genres")
+    Iterable<Genre> getBookGenres(@PathVariable Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        return book.orElseThrow(RuntimeException::new).getBookGenres();
+    }
 
     @GetMapping("{id}")
     Book getBook(@PathVariable Long id) {
