@@ -1,68 +1,59 @@
 package sk.uniza.fri.sem_vaii.aplication.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import sk.uniza.fri.sem_vaii.aplication.repositories.AuthorCrudRepository;
+import sk.uniza.fri.sem_vaii.aplication.assemblers.AuthorAssembler;
+import sk.uniza.fri.sem_vaii.aplication.dtos.AuthorDTO;
+import sk.uniza.fri.sem_vaii.aplication.services.AuthorService;
 import sk.uniza.fri.sem_vaii.domain.Author;
 import sk.uniza.fri.sem_vaii.domain.Book;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/author")
+@RequiredArgsConstructor
 public class AuthorController {
-    @Autowired
-    AuthorCrudRepository authorCrudRepository;
+    private final AuthorService authorService;
 
     @GetMapping("{id}/books")
     Iterable<Book> getAuthorBooks(@PathVariable Long id) {
-        Optional<Author> author = authorCrudRepository.findById(id);
-        return author.orElseThrow(RuntimeException::new).getAuthorBooks();
+        Author author = authorService.getAuthor(id);
+        return author.getAuthorBooks();
     }
 
     @GetMapping("{id}")
-    Author getAuthor(@PathVariable Long id) {
-        Optional<Author> author = authorCrudRepository.findById(id);
-        return author.orElseThrow(RuntimeException::new);
+    AuthorDTO getAuthor(@PathVariable Long id) {
+        return AuthorAssembler.toDto(authorService.getAuthor(id));
     }
 
     @GetMapping()
-    Iterable<Author> getAuthors(@RequestParam(name="name", required = false) String name) {
+    Iterable<AuthorDTO> getAuthors(@RequestParam(name="name", required = false) String name) {
         if (name == null  || name.isBlank()) {
-            return authorCrudRepository.findAll();
-        } else {
-            return authorCrudRepository.findByName(name);
+            return authorService.getAuthors().stream()
+                    .map(AuthorAssembler::toDto).toList();
         }
+
+        return authorService.getAuthorByName(name).stream()
+                .map(AuthorAssembler::toDto).toList();
     }
 
     @PostMapping()
-    Author newAuthor(@Valid @RequestBody Author author) {
-        if (authorCrudRepository.existsById(author.getId())) {
+    AuthorDTO newAuthor(@Valid @RequestBody AuthorDTO authorDTO) {
+        if (authorService.getAuthor(authorDTO.getId()) != null) {
             throw new RuntimeException();
         }
 
-        return authorCrudRepository.save(author);
+        return AuthorAssembler.toDto(authorService.addAuthor(authorDTO));
     }
 
     @PutMapping("{id}")
-    Author replaceAuthor(@Valid @RequestBody Author newAuthor, @PathVariable Long id) {
-        return authorCrudRepository.findById(id)
-                .map(author -> {
-                    author.setName(newAuthor.getName());
-                    author.setLastName(newAuthor.getLastName());
-                    author.setInfo(newAuthor.getInfo());
-                    author.setAuthorBooks(newAuthor.getAuthorBooks());
-                    return authorCrudRepository.save(author);
-                })
-                .orElseGet(() -> {
-                    newAuthor.setId(id);
-                    return  authorCrudRepository.save(newAuthor);
-                });
+    AuthorDTO replaceAuthor(@Valid @RequestBody AuthorDTO newAuthorDTO, @PathVariable Long id) {
+        return AuthorAssembler.toDto(authorService.updateAuthor(id, newAuthorDTO));
     }
 
     @DeleteMapping("{id}")
     void deleteAuthor(@PathVariable Long id) {
-        authorCrudRepository.deleteById(id);
+        authorService.deleteAuthor(id);
     }
 }

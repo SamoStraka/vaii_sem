@@ -1,29 +1,46 @@
 package sk.uniza.fri.sem_vaii.aplication.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import sk.uniza.fri.sem_vaii.aplication.repositories.GenreCrudRepository;
+import org.springframework.web.bind.annotation.*;
+import sk.uniza.fri.sem_vaii.aplication.assemblers.GenreAssembler;
+import sk.uniza.fri.sem_vaii.aplication.dtos.GenreDTO;
+import sk.uniza.fri.sem_vaii.aplication.repositories.GenreRepository;
+import sk.uniza.fri.sem_vaii.aplication.services.GenreService;
 import sk.uniza.fri.sem_vaii.domain.Genre;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/genre")
+@RequiredArgsConstructor
 public class GenreController {
-    @Autowired
-    GenreCrudRepository genreRepository;
+    private final GenreService genreService;
 
     @GetMapping("{id}")
-    Genre getGenre(@PathVariable Long id) {
-        Optional<Genre> genre = genreRepository.findById(id);
-        return genre.orElseThrow(RuntimeException::new);
+    GenreDTO getGenre(@PathVariable Long id) {
+        Genre genre = genreService.getGenre(id);
+        return GenreAssembler.toDto(genre);
     }
 
     @GetMapping()
-    Iterable<Genre> getGenres() {
-        return genreRepository.findAll();
+    Iterable<GenreDTO> getGenres() {
+        return genreService.getGenres().stream()
+                .map(GenreAssembler::toDto).toList();
+    }
+
+    @PostMapping()
+    GenreDTO newGenre(@Valid @RequestBody GenreDTO genreDTO) {
+        if (genreService.getGenre(genreDTO.getId()) != null) {
+            throw new RuntimeException();
+        }
+
+        return GenreAssembler.toDto(genreService.addGenre(genreDTO));
+    }
+
+    @DeleteMapping("{id}")
+    void deleteAuthor(@PathVariable Long id) {
+        genreService.deleteGenre(id);
     }
 }
