@@ -12,6 +12,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { NewAuthorComponent } from './new-author/new-author.component';
 import {FormsModule} from "@angular/forms";
 import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { DetailAuthorComponent } from './detail-author/detail-author.component';
+import { NewAwardComponent } from './new-award/new-award.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { EditAuthorComponent } from './edit-author/edit-author.component';
     ContactComponent,
     IndexPageComponent,
     NewAuthorComponent,
-    EditAuthorComponent
+    EditAuthorComponent,
+    DetailAuthorComponent,
+    NewAwardComponent
   ],
   imports: [
     BrowserModule,

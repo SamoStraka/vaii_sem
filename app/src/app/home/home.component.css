@@ -88,7 +88,38 @@ body {
 }
 
 .home-awards p {
-  color: var(--gray);
   margin: 0;
   font-size: 1.5rem;
+}
+
+.delete_icon i {
+  font-size: 1.2rem;
+}
+
+.delete_icon i:hover {
+  cursor: pointer;
+}
+
+.btn-submit {
+  background-color: var(--red);
+  color: var(--natural);
+}
+
+.btn-submit:hover {
+  background-color: var(--pink);
+}
+
+.high {
+  font-weight: 800;
+  color: var(--pink);
+}
+
+.medium {
+  font-weight: 600;
+  color: var(--gray);
+}
+
+.low {
+  font-weight: lighter;
+  color: var(--gray);
 }

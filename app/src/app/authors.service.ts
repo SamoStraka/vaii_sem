@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as http from "http";
 import {HttpClient} from "@angular/common/http";
 import {Author} from "./author";
 
@@ -8,7 +7,7 @@ import {Author} from "./author";
 })
 export class AuthorsService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   get(id: number) {
     return this.http.get<Author>(`/api/author/${id}`)

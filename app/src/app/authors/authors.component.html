@@ -13,10 +13,10 @@
           <img src="../../assets/img/face.jpg" alt="fake img">
         </div>
         <div class="col-9">
-          <h3>{{author.name + ' ' + author.lastName}}</h3>
+          <h3 class="cursor-pointer" [routerLink]="[author.id, 'detail']">{{author.name + ' ' + author.lastName}}</h3>
           <p>
             {{cutString(author.info)}}
-            <a href="#">
+            <a [routerLink]="[author.id, 'detail']">
               viac
             </a>
           </p>

@@ -25,17 +25,23 @@
   <div class="home-reached row">
     <div class="col-sm-4 text-center">
       <i class="bi bi-book-half"></i>
-      <h5>2533</h5>
+      <h5>
+        {{this.booksCount}}
+      </h5>
       <h6>Kníh</h6>
     </div>
     <div class="col-sm-4 text-center">
       <i class="bi bi-person-fill"></i>
-      <h5>342</h5>
+      <h5>
+        {{this.authorsCount}}
+      </h5>
       <h6>Autorov</h6>
     </div>
     <div class="col-sm-4 text-center">
       <i class="bi bi-card-image"></i>
-      <h5>153</h5>
+      <h5>
+        {{this.genresCount}}
+      </h5>
       <h6>Žánrov</h6>
     </div>
   </div>
@@ -71,25 +77,23 @@
     <h2>
       Ocenenia
     </h2>
-    <div class="row shadow d-flex align-items-center">
+    <div *ngFor="let award of awards" class="row shadow d-flex align-items-center">
       <div class="col-3 text-center">
         <i class="bi bi-award-fill"></i>
       </div>
-      <div class="col-9">
-        <p>
-          Slovak gold
+      <div class="col-8">
+        <p [ngClass]="{'high': award.priority === 1, 'medium': award.priority === 2, 'low': award.priority === 3}">
+          {{award.name}}
         </p>
+      </div>
+      <div class="col-1">
+        <a class="delete_icon" (click)="delete(award)">
+          <i class="bi bi-trash-fill"></i>
+        </a>
       </div>
     </div>
-    <div class="row shadow d-flex align-items-center">
-      <div class="col-3 text-center">
-        <i class="bi bi-award-fill"></i>
-      </div>
-      <div class="col-9">
-        <p>
-          Slovak gold
-        </p>
-      </div>
+    <div class="d-flex justify-content-center">
+      <a class="btn btn-submit" routerLink="new-award">Pridať ocenenie</a>
     </div>
   </div>
 </div>

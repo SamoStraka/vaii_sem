@@ -1,0 +1,33 @@
+<h2 class="text-center text-md-left">
+  Vytvorenie nového ocenenia
+</h2>
+<div class="contact-form d-flex justify-content-center">
+  <form (submit)="submit(form)"
+        #form=ngForm [class.was-validated]="form.submitted || form.touched">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="md-form mb-0">
+          <label class="" for="name">Názov</label>
+          <input class="form-control" required="required" pattern="[A-Za-z0-9\s]{1,30}" id="name" name="name" type="text" [(ngModel)]="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="md-form mb-0">
+          <label class="" for="priority">Priorita</label>
+          <select class="form-select" name="priority" id="priority" [(ngModel)]="priority">
+            <option *ngFor="let option of options" [value]="option.value">
+              {{option.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="text-center text-md-left btn-submit">
+        Odoslať
+      </button>
+    </div>
+  </form>
+</div>

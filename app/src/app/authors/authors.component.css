@@ -26,6 +26,11 @@ body {
   color: var(--red);
 }
 
+.author-detail h3:hover {
+  cursor: pointer;
+  color: var(--pink);
+}
+
 .author-detail a {
   text-decoration: none;
   color: var(--red);

@@ -10,7 +10,6 @@ import {Author} from "../author";
 export class AuthorsComponent implements OnInit {
 
   authors: Author[] = []
-  try: number[] = [1, 2, 3, 4]
 
   constructor(private readonly authorService: AuthorsService) {
    this.reload()
@@ -31,7 +30,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   delete(author:Author) {
-      if(confirm(`Delete item ${author.name} ${author.lastName}?`)) {
+      if(confirm(`Odstrániť autora ${author.name} ${author.lastName}?`)) {
         this.authorService.delete(author)
           .subscribe(() => {
             this.reload()
