@@ -28,8 +28,17 @@ public class Book {
 
     private String info;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "authorBooks")
+    @ManyToOne
+    @JoinColumn(name = "language_id", nullable = false)
+    private Language language;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "authors_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
     private Set<Author> authors = new HashSet<>();
 
     @ManyToMany

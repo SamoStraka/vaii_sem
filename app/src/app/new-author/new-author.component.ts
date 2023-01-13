@@ -33,8 +33,6 @@ export class NewAuthorComponent implements OnInit {
           if (val.id > newId) {
             newId = val.id
           }
-          console.log('new' + newId)
-          console.log('val' + val.id)
         })
 
         newId++

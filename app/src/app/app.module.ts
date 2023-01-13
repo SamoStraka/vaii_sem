@@ -14,6 +14,10 @@ import {FormsModule} from "@angular/forms";
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { DetailAuthorComponent } from './detail-author/detail-author.component';
 import { NewAwardComponent } from './new-award/new-award.component';
+import { NewBookComponent } from './new-book/new-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { NewAwardComponent } from './new-award/new-award.component';
     NewAuthorComponent,
     EditAuthorComponent,
     DetailAuthorComponent,
-    NewAwardComponent
+    NewAwardComponent,
+    NewBookComponent,
+    EditBookComponent,
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

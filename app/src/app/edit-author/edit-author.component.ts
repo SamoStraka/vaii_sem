@@ -9,13 +9,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./edit-author.component.css']
 })
 export class EditAuthorComponent implements OnInit {
-  private id: number;
-  author: Author;
+  private id: number
+  author: Author
 
   constructor(private readonly authorService: AuthorsService,
               private route: ActivatedRoute,
               private router: Router) {
-    this.id = Number(route.snapshot.paramMap.get('id'));
+    this.id = Number(route.snapshot.paramMap.get('id'))
 
     this.author = {
       id: this.id,

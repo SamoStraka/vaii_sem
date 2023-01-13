@@ -18,6 +18,8 @@ public class BookAssembler {
         bookDto.setNumberOfPages(book.getNumberOfPages());
         bookDto.setInfo(book.getInfo());
         bookDto.setAuthors(book.getAuthors());
+        bookDto.setBookGenres(book.getBookGenres());
+        bookDto.setLanguage(book.getLanguage());
 
         return bookDto;
     }
@@ -32,6 +34,8 @@ public class BookAssembler {
         book.setNumberOfPages(bookDTO.getNumberOfPages());
         book.setInfo(bookDTO.getInfo());
         book.setAuthors(bookDTO.getAuthors());
+        book.setBookGenres(bookDTO.getBookGenres());
+        book.setLanguage(bookDTO.getLanguage());
 
         return book;
     }

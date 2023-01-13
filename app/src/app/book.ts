@@ -1,4 +1,6 @@
 import {Author} from "./author";
+import {Genre} from "./genre";
+import {Language} from "./language";
 
 export interface Book {
   id: number
@@ -8,4 +10,6 @@ export interface Book {
   numberOfPages: number
   info: string
   authors: Author[]
+  bookGenres: Genre[]
+  language: Language
 }

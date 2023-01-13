@@ -1,5 +1,6 @@
 package sk.uniza.fri.sem_vaii.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,11 +29,7 @@ public class Author {
     private String lastName;
     private String info;
 
-    @ManyToMany
-    @JoinTable(
-            name = "authors_book",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
+    @JsonIgnore
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> authorBooks = new HashSet<>();
 }
