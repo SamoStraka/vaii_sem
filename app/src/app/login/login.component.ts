@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    //encrypt password
+    this.user.password = btoa(this.user.password)
     this.userService.login(this.user)
       .subscribe(value => {
         if(value){
@@ -36,6 +38,12 @@ export class LoginComponent implements OnInit {
             this.wrongLogin = false;
           }, 2000)
         }
+      },
+      error => {
+        this.wrongLogin = true
+        setInterval(() => {
+          this.wrongLogin = false;
+        }, 2000)
       })
   }
 

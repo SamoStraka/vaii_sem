@@ -10,13 +10,13 @@
         <label class="" for="name">Meno</label>
         <input class="form-control" id="name" required="required" name="name" type="text" [(ngModel)]="user.username">
       </div>
-      
+
 
       <div class="md-form mb-0">
         <label class="" for="name">Heslo</label>
         <input class="form-control" id="password" required="required" name="password" type="password" [(ngModel)]="user.password">
       </div>
-      <div *ngIf="wrongLogin" class="col-12">
+      <div *ngIf="wrongLogin" class="col-12 mt-1">
         <p class="alert alert-danger">
           Neplatné prihlasovacie údaje
         </p>

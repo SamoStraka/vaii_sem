@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,15 +21,20 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.web.cors.CorsConfigurationSource;
-import sk.uniza.fri.sem_vaii.domain.UserDAO;
+import sk.uniza.fri.sem_vaii.aplication.repositories.UserRepository;
+
+import java.util.Collections;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
+    /**
+     * inspirovane: https://www.youtube.com/watch?v=b9O9NI-RJ3o
+     * **/
+
     private final JwtAuthFilter jwtAuthFilter;
-    private final UserDAO userDAO;
+    private final UserRepository userRepository;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -83,7 +89,6 @@ public class WebSecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
-        //return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -91,7 +96,8 @@ public class WebSecurityConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return userDAO.findUserBytName(username);
+                var user = userRepository.findByUsername(username).stream().findFirst().orElseThrow(() -> new UsernameNotFoundException("no username"));
+                return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")));
             }
         };
     }

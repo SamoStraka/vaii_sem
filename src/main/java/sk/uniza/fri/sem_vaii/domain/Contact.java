@@ -3,7 +3,6 @@ package sk.uniza.fri.sem_vaii.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sk.uniza.fri.sem_vaii.aplication.config.BookConfig;
 
 import javax.persistence.*;
 

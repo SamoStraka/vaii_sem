@@ -1,8 +1,12 @@
 package sk.uniza.fri.sem_vaii.aplication.assemblers;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import sk.uniza.fri.sem_vaii.aplication.dtos.ReservationDTO;
 import sk.uniza.fri.sem_vaii.domain.Reservation;
 
+@Data
+@RequiredArgsConstructor
 public class ReservationAssembler {
 
     public static ReservationDTO toDto(Reservation reservation) {

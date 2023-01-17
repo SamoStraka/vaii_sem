@@ -12,6 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class JwtUtils {
+
+    /**
+     * inspirovane: https://www.youtube.com/watch?v=b9O9NI-RJ3o
+     * **/
+
     public String generateToken(UserDetails userDetails) {
         return createToken(new HashMap<>(), userDetails);
     }

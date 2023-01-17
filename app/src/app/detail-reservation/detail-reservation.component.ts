@@ -51,7 +51,11 @@ export class DetailReservationComponent implements OnInit {
     }
     this.bookService.edit(book)
       .subscribe()
-    this.books = this.books.filter(value => value.id != book.id)
+
+    let index = this.books.findIndex(value => value.id == book.id)
+    if (index > -1) {
+      this.books.splice(index, 1);
+    }
   }
 
   confirm(): void {

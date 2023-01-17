@@ -1,0 +1,20 @@
+.not-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+}
+
+.not-found h3 {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--red);
+}
+
+.not-found h4 {
+  font-size: 2rem;
+  color: var(--gray);
+}
+
+

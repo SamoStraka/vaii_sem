@@ -32,9 +32,16 @@ export class DetailBookComponent {
   }
 
   addToReservation(): void {
-    this.book.available--
-    const start = localStorage.getItem('reservedBooks') == null ? '' : localStorage.getItem('reservedBooks') + ' '
-    localStorage.setItem('reservedBooks',  start + this.book.id)
+    let rb = localStorage.getItem('reservedBooks')
+    if (rb == null){
+      localStorage.setItem('reservedBooks','' + this.book.id)
+      this.book.available--
+    } else {
+      const start =  localStorage.getItem('reservedBooks') == null ? '' : localStorage.getItem('reservedBooks') + ' '
+      localStorage.setItem('reservedBooks',  (start + this.book.id).trim())
+      this.book.available--
+    }
+
     this.reservationLength = this.getReservedLength()
     this.bookService.edit(this.book)
       .subscribe()

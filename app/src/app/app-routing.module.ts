@@ -26,7 +26,7 @@ const routes: Routes = [
   {path:'home/new-award', component: NewAwardComponent, canActivate: [UsersGuard]},
   {path:'books', component: BooksComponent},
   {path:'books/new', component: NewBookComponent, canActivate: [UsersGuard]},
-  {path:'books/:id/edit', component: EditBookComponent, canActivate: [UsersGuard]},
+  {path:'books/:id/edit', component: EditBookComponent},
   {path:'books/:id/detail', component: DetailBookComponent},
   {path:'reservation', component: DetailReservationComponent},
   {path:'reservation/manage', component: ReservationManageComponent},
@@ -37,6 +37,7 @@ const routes: Routes = [
   {path:'contact', component: ContactComponent},
   {path:'contact/manage', component: ContactsManageComponent},
   {path:'login', component: LoginComponent},
+  {path:'logout', component: HomeComponent},
   {path:'', redirectTo: 'index', pathMatch: 'full'},
   {path:'**', component: NotFoundComponent}
 ];

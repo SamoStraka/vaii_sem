@@ -4,68 +4,40 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.session.SessionInformation;
-import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.security.web.context.HttpRequestResponseHolder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.server.context.ServerSecurityContextRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import sk.uniza.fri.sem_vaii.aplication.JwtUtils;
 import sk.uniza.fri.sem_vaii.aplication.dtos.UserDTO;
-import sk.uniza.fri.sem_vaii.domain.UserDAO;
+import sk.uniza.fri.sem_vaii.aplication.repositories.UserRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
-
-import java.util.List;
+import java.util.Collections;
 
 @RestController
 @RequestMapping()
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final SecurityContextLogoutHandler logoutHandler;
-    private final HttpSessionSecurityContextRepository securityContextRepository;
     private final AuthenticationManager authenticationManager;
-    private final UserDAO userDAO;
+    private final UserRepository userRepository;
     private final JwtUtils jwtUtils;
 
-    private final SessionRegistry sessionRegistry;
+    /**
+     * inspirovane: https://www.youtube.com/watch?v=b9O9NI-RJ3o
+     * **/
 
     @PostMapping("/api/login")
     public ResponseEntity<String> login (@RequestBody UserDTO userDTO) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        List<SessionInformation> sessions = sessionRegistry.getAllSessions(authentication.getPrincipal(), false);
-        final UserDetails user1 = userDAO.findUserBytName(userDTO.getUsername());
-        var nn = new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword());
         authenticationManager.authenticate(
-                nn
+                new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword())
         );
-        final UserDetails user = userDAO.findUserBytName(userDTO.getUsername());
+        var user1 = userRepository.findByUsername(userDTO.getUsername()).stream().findFirst().orElseThrow(() -> new UsernameNotFoundException("no username"));
+        final UserDetails user = new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+
         if (user != null) {
             return ResponseEntity.ok(jwtUtils.generateToken(user));
         }
         return  ResponseEntity.status(400).body("Error");
-    }
-
-    @PostMapping("/logoutuj")
-    @ResponseBody
-    public String currentUser(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        logoutHandler.logout(request, response, authentication);
-        List<SessionInformation> sessions = sessionRegistry.getAllSessions(authentication.getPrincipal(), false);
-        for (SessionInformation session : sessions) {
-            session.expireNow();
-        }
-        SecurityContextHolder.clearContext();
-        request.getSession().invalidate();
-        return "logged out";
     }
 }

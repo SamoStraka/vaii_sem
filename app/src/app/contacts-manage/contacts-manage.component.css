@@ -23,7 +23,7 @@ a {
 }
 
 .solved {
-  background-color: var(--gray);
+  background-color: var(--brown);
 }
 
 .contact-check label{
@@ -35,6 +35,26 @@ a {
   margin: .8rem 0;
   border-radius: 1rem;
   box-shadow: 3px 3px 3px 3px #eee;
+}
+
+.contact-manage h4 {
+  color: var(--pink);
+}
+
+.contact-manage span {
+  font-size: .9rem ;
+  color: var(--gray);
+}
+
+.contact-manage p {
+  color: var(--gray);
+  margin-left: 1rem;
+}
+
+.contact-manage h5 {
+  color: var(--pink);
+  font-size: 1rem;
+  margin-left: 1rem;
 }
 
 
