@@ -8,30 +8,27 @@ import { ActivatedRoute } from "@angular/router";
   templateUrl: './detail-author.component.html',
   styleUrls: ['./detail-author.component.css']
 })
-export class DetailAuthorComponent implements OnInit {
+export class DetailAuthorComponent{
 
-  private id: number;
-  author: Author;
+  private id: number
+  more: boolean = false
+  author = {} as Author
 
   constructor(private readonly authorService: AuthorsService,
               private route: ActivatedRoute) {
     this.id = Number(route.snapshot.paramMap.get('id'));
-
-    this.author = {
-      id: this.id,
-      name: '',
-      lastName: '',
-      info: '',
-      authorBooks: []
-    }
 
     authorService.get(this.id)
       .subscribe(value => {
         this.author = value
       })
   }
+  cutString(text:string, lenght: number): string {
+    return text.length > lenght ? text.substring(0, lenght) + '...' : text
+  }
 
-  ngOnInit(): void {
+  show(): void {
+    this.more = !this.more
   }
 
 }

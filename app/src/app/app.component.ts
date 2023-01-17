@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {Observable} from "rxjs";
+import {User} from "./user";
+import {UsersService} from "./users.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  user$: Observable<User | undefined>;
+  constructor(private userService: UsersService) {
+    this.user$ = userService.onUserChange()
+  }
+
 }

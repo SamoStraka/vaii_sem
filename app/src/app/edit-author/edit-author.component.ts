@@ -41,7 +41,7 @@ export class EditAuthorComponent implements OnInit {
 
     this.authorService.edit(this.author)
       .subscribe(() => {
-        this.router.navigate(['/authors', this.author.id])
+        this.router.navigate(['/authors', this.author.id, 'detail'])
       })
   }
 }

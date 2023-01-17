@@ -1,8 +1,15 @@
+<p *ngIf="reservationLength > 0" class="reservation-info">
+  <a routerLink="../reservation">
+    Dokončiť rezerváciu, počet kníh:
+    <span>
+      {{reservationLength}}
+    </span>
+  </a>
+</p>
 <div class="search d-flex justify-content-around">
   <h1>Knihy</h1>
-  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
 </div>
-<div class="administration d-flex justify-content-center">
+<div *ngIf="user$ | async as user" class="administration d-flex justify-content-center">
   <a class="btn btn-submit" routerLink="new">Nová kniha</a>
 </div>
 <div class="container">
@@ -10,10 +17,15 @@
     <div *ngFor="let book of books" class="col author-detail">
       <div class="row d-flex align-items-center">
         <div class="col-3 author-photo">
-          <img src="../../assets/img/face.jpg" alt="fake img">
+          <img src="../../assets/img/book.jpg" alt="fake img">
         </div>
-        <div class="col-9">
+        <div class="col-9 author-card">
           <h3 class="cursor-pointer" [routerLink]="[book.id, 'detail']">{{book.title}}</h3>
+          <h4 >
+            <a *ngFor="let author of book.authors" [routerLink]="'../authors/' + author.id + '/detail'">
+              {{author.name + ' ' + author.lastName}}
+            </a>
+          </h4>
           <p>
             {{cutString(book.info)}}
             <a [routerLink]="[book.id, 'detail']">
@@ -22,26 +34,12 @@
           </p>
         </div>
       </div>
-      <div class="admin_buttons d-flex justify-content-end">
+      <div *ngIf="user$ | async as user" class="admin_buttons d-flex justify-content-end">
         <a class="author_icon" [routerLink]="[book.id, 'edit']"><i class="bi bi-pencil-fill"></i></a>
         <a class="author_icon" (click)="delete(book)"><i class="bi bi-trash-fill"></i></a>
       </div>
     </div>
   </div>
-
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">&raquo;</a>
-      </li>
-    </ul>
-  </nav>
 
   <div class="quote">
     <h4>

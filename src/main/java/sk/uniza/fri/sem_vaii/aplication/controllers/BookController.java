@@ -24,8 +24,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
-    private final GenreService genreService;
-    private final AuthorService authorService;
 
     @GetMapping("{id}/genres")
     Iterable<GenreDTO> getBookGenres(@PathVariable Long id) {

@@ -27,11 +27,11 @@ public class Book {
     private Long numberOfPages;
 
     private String info;
+    private Long available;
 
     @ManyToOne
     @JoinColumn(name = "language_id", nullable = false)
     private Language language;
-
 
     @ManyToMany
     @JoinTable(
@@ -48,4 +48,8 @@ public class Book {
         inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private Set<Genre> bookGenres = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "reservationBooks")
+    private Set<Reservation> bookReservations = new HashSet<>();
 }

@@ -13,20 +13,29 @@ import {NewBookComponent} from "./new-book/new-book.component";
 import {EditBookComponent} from "./edit-book/edit-book.component";
 import {LoginComponent} from "./login/login.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {UsersGuard} from "./users.guard";
+import {ContactsManageComponent} from "./contacts-manage/contacts-manage.component";
+import {DetailBookComponent} from "./detail-book/detail-book.component";
+import {DetailReservationComponent} from "./detail-reservation/detail-reservation.component";
+import {ReservationManageComponent} from "./reservation-manage/reservation-manage.component";
 
 
 const routes: Routes = [
   {path:'index', component: IndexPageComponent},
   {path:'home', component: HomeComponent},
-  {path:'home/new-award', component: NewAwardComponent},
+  {path:'home/new-award', component: NewAwardComponent, canActivate: [UsersGuard]},
   {path:'books', component: BooksComponent},
-  {path:'books/new', component: NewBookComponent},
-  {path:'books/:id/edit', component: EditBookComponent},
+  {path:'books/new', component: NewBookComponent, canActivate: [UsersGuard]},
+  {path:'books/:id/edit', component: EditBookComponent, canActivate: [UsersGuard]},
+  {path:'books/:id/detail', component: DetailBookComponent},
+  {path:'reservation', component: DetailReservationComponent},
+  {path:'reservation/manage', component: ReservationManageComponent},
   {path:'authors', component: AuthorsComponent},
-  {path:'authors/new', component: NewAuthorComponent},
-  {path:'authors/:id/edit', component: EditAuthorComponent},
+  {path:'authors/new', component: NewAuthorComponent, canActivate: [UsersGuard]},
+  {path:'authors/:id/edit', component: EditAuthorComponent, canActivate: [UsersGuard]},
   {path:'authors/:id/detail', component: DetailAuthorComponent},
   {path:'contact', component: ContactComponent},
+  {path:'contact/manage', component: ContactsManageComponent},
   {path:'login', component: LoginComponent},
   {path:'', redirectTo: 'index', pathMatch: 'full'},
   {path:'**', component: NotFoundComponent}

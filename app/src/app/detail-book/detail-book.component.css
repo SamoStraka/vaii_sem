@@ -1,0 +1,85 @@
+.reservation-info {
+  background-color: var(--red);
+  padding: .4rem;
+  text-align: center;
+}
+
+.reservation-info a {
+  text-decoration: none;
+  color: var(--natural);
+}
+
+.reservation-info a span {
+  color: var(--brown);
+  font-weight: bold;
+}
+
+
+.book-photo img{
+  width: 50%;
+}
+
+.book-photo {
+  margin: 0 auto;
+}
+
+.book-info h1 {
+  color: var(--red)
+}
+
+.book-info p{
+  color: var(--gray);
+}
+
+.book-info span {
+  color: var(--pink);
+}
+
+.book-info span:hover {
+  cursor: pointer;
+}
+
+.book-info h4 a {
+  color: var(--gray);
+  background-color: var(--natural);
+  font-size: 1.2rem;
+  padding: .4rem;
+  border-radius: .5rem;
+  margin-right: .5rem;
+  transition: .5s;
+}
+
+.book-info h4 a:hover {
+  background-color: var(--brown);
+}
+
+.book-facts {
+  margin-top: 2rem;
+}
+
+.book-facts h6 {
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.book-facts span {
+  color: var(--pink);
+  font-size: 1.2rem;
+}
+
+.book-avaliable, .book-unavaliable {
+  margin-top: 2rem;
+}
+
+.book-avaliable h5 {
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.book-unavaliable h5 {
+  color: var(--brown);
+  text-transform: uppercase;
+}
+
+
+

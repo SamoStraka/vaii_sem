@@ -16,7 +16,7 @@ import {Book} from "../book";
 })
 export class EditBookComponent implements OnInit {
   private id: number
-  book: Book
+  book = {} as Book
   genres: Genre[] = []
   selectedGenre: number = 0
   authors: Author[] = []
@@ -34,20 +34,6 @@ export class EditBookComponent implements OnInit {
 
     this.id = Number(route.snapshot.paramMap.get('id'))
 
-    this.book = {
-      id: this.id,
-      isbn: '',
-      title: '',
-      releaseYear: 0,
-      numberOfPages: 0,
-      info: '',
-      authors: [],
-      bookGenres: [],
-      language: {
-        id: 1,
-        name: 'Slovenský'
-      }
-    }
     this.bookService.get(this.id)
       .subscribe(value => {
         this.book = value
@@ -101,7 +87,7 @@ export class EditBookComponent implements OnInit {
 
     this.bookService.edit(this.book)
       .subscribe(() => {
-        this.router.navigate(['/books', this.book.id])
+        this.router.navigate(['/books', this.book.id, 'detail'])
       })
   }
 

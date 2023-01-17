@@ -1,0 +1,18 @@
+.login h1 {
+  color: var(--brown);
+  text-align: center;
+  font-size: 3rem;
+}
+
+.login form {
+  position: absolute;
+  padding: 1rem;
+  border-radius: 1rem;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+}
+
+
+

@@ -1,6 +1,11 @@
 <div class="container">
 
   <div class="kontakt">
+    <div *ngIf="user$ | async as user" class="d-flex justify-content-end">
+      <a  routerLink="manage" class="text-center text-md-left btn-submit">
+        Spravovať správy
+      </a>
+    </div>
     <h1 class="h1-responsive">
       Kontakt
     </h1>
@@ -12,19 +17,20 @@
           hodín.
         </p>
 
-        <form action="mail.php" id="contact-form" method="POST" name="contact-form">
+        <form (submit)="submit(form)"
+              #form=ngForm [class.was-validated]="form.submitted || form.touched">
           <div class="row">
 
             <div class="col-md-6">
               <div class="md-form mb-0">
                 <label class="" for="name">Meno</label>
-                <input class="form-control" id="name" name="name" type="text">
+                <input class="form-control" id="name" name="name" type="text" [(ngModel)]="name">
               </div>
             </div>
             <div class="col-md-6">
               <div class="md-form mb-0">
                 <label class="" for="email">Email</label>
-                <input class="form-control" id="email" name="email" type="text">
+                <input class="form-control" id="email" name="email" type="text" [(ngModel)]="email">
               </div>
             </div>
 
@@ -33,7 +39,7 @@
             <div class="col-md-12">
               <div class="md-form mb-0">
                 <label class="" for="subject">Predmet</label>
-                <input class="form-control" id="subject" name="subject" type="text">
+                <input class="form-control" id="subject" name="subject" type="text" [(ngModel)]="subject">
               </div>
             </div>
           </div>
@@ -42,16 +48,19 @@
 
               <div class="md-form">
                 <label for="message">Vaša správa</label>
-                <textarea class="form-control md-textarea" id="message" name="message" rows="2"></textarea>
+                <textarea class="form-control md-textarea" id="message" name="message" rows="2" [(ngModel)]="message"></textarea>
               </div>
 
             </div>
           </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="text-center text-md-left btn-submit">
+              Odoslať
+            </button>
+          </div>
         </form>
 
-        <div class="text-center text-md-left">
-          <a class="btn-submit">Odoslať</a>
-        </div>
+
         <div class="status"></div>
 
       </div>
@@ -127,3 +136,14 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="user$ | async as user; else loginTmp" class="d-flex justify-content-end">
+  <a class="btn-submit" (click)="logout()" routerLink="../logout">Logout</a>
+</div>
+
+<ng-template #loginTmp>
+  <div class="d-flex justify-content-end">
+    <a class="btn-submit" routerLink="../login">Login</a>
+  </div>
+</ng-template>
+

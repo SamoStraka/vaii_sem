@@ -21,22 +21,6 @@ form {
   margin-top: 3rem;
 }
 
-.btn-submit {
-  color: var(--natural);
-  padding: .375rem .5rem;
-  font-size: 1.2rem;
-  background-color: var(--red);
-  border-radius: .5rem;
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-  border: none;
-}
-
-.btn-submit:hover {
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
-  cursor: pointer;
-  color: var(--natural);
-}
-
 @media (min-width: 800px) {
   .kontakt iframe {
     width: 60%;

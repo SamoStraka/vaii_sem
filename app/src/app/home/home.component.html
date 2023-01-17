@@ -86,7 +86,7 @@
           {{award.name}}
         </p>
       </div>
-      <div class="col-1">
+      <div *ngIf="user$ | async as user" class="col-1">
         <a class="delete_icon" (click)="delete(award)">
           <i class="bi bi-trash-fill"></i>
         </a>

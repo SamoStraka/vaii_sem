@@ -1,0 +1,75 @@
+<p *ngIf="reservationLength > 0" class="reservation-info">
+  <a routerLink="../../../reservation">
+    Dokončiť rezerváciu, počet kníh:
+    <span>
+      {{reservationLength}}
+    </span>
+  </a>
+</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-6 col-md-4 book-photo d-flex justify-content-center flex-column align-items-center" >
+      <img src="../../assets/img/book.jpg" alt="Book Photo" >
+      <div class="book-facts">
+        <h6>
+          ISBN:
+          <span>
+            {{book.isbn}}
+          </span>
+        </h6>
+        <h6>
+          Rok vydania:
+          <span>
+            {{book.releaseYear}}
+          </span>
+        </h6>
+        <h6>
+          Počet strán:
+          <span>
+            {{book.numberOfPages}}
+          </span>
+        </h6>
+        <h6>
+          Jazyk:
+          <span>
+            {{book.language.name}}
+          </span>
+        </h6>
+      </div>
+    </div>
+    <div class="col-md-8 book-info">
+      <h1>{{this.book.title}}</h1>
+      <h4 >
+        <a *ngFor="let author of book.authors" [routerLink]="'../../../authors/' + author.id + '/detail'">
+          {{author.name + ' ' + author.lastName}}
+        </a>
+      </h4>
+      <p *ngIf="!this.more">
+        {{this.cutString(this.book.info, 500)}}
+        <span *ngIf="this.book.info.length > 500" (click)="show()">viac</span>
+      </p>
+      <p *ngIf="this.more">
+        {{this.book.info}}
+        <span (click)="show()">menej</span>
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="book.available > 0" class="book-avaliable d-flex justify-content-between">
+    <h5>
+      Dostupné:
+      <span>
+      {{this.book.available}}
+    </span>
+    </h5>
+    <a class="btn btn-submit" (click)="addToReservation()">Rezervovať</a>
+  </div>
+
+  <div *ngIf="book.available <= 0" class="book-unavaliable d-flex justify-content-between">
+    <h5>
+      Nedostupné
+    </h5>
+  </div>
+
+</div>

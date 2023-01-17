@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksService} from "../books.service";
 import {Book} from "../book";
+import {UsersService} from "../users.service";
+import {Observable} from "rxjs";
+import {User} from "../user";
 
 @Component({
   selector: 'app-books',
@@ -10,12 +13,18 @@ import {Book} from "../book";
 export class BooksComponent implements OnInit {
 
   books: Book[] = []
+  reservationLength: number = 0
+  user$: Observable<User | undefined>
 
   constructor(
     private readonly bookService: BooksService,
+    private readonly userService: UsersService
   ) {
+    this.reservationLength = this.getReservedLength()
+    this.user$ = userService.onUserChange()
     this.fetch()
   }
+
 
   private fetch() {
     this.bookService.getAll()
@@ -38,5 +47,13 @@ export class BooksComponent implements OnInit {
           this.fetch()
         })
     }
+  }
+
+  private getReservedLength(): number {
+    const item = localStorage.getItem('reservedBooks')
+    if (item == null || item.length == 0) {
+      return 0
+    }
+    return (item?.split(' ') || []).length
   }
 }

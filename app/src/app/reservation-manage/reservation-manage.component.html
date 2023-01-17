@@ -1,0 +1,39 @@
+<div class="kontakt">
+  <h1 class="h1-responsive">
+    Prijaté rezervácie
+  </h1>
+  <div class="container">
+    <div *ngFor="let reservation of reservations" >
+      <div class="sprava-card">
+        <div class="row reservation">
+          <div class="col-11">
+            <h4>
+              <span>
+                Č. O.
+              </span>
+              {{reservation.number}}
+              <span>
+              {{reservation.email}}
+            </span>
+            </h4>
+          </div>
+          <div class="col-1 admin_buttons">
+            <a class="author_icon" (click)="delete(reservation)"><i class="bi bi-trash-fill"></i></a>
+          </div>
+        </div>
+        <div *ngFor="let book of reservation.reservationBooks" class="d-flex justify-content-around reservation-book">
+
+          <a [routerLink]="'../../books/' + book.id + '/detail'">
+            <span>
+              KNIHA
+            </span>
+            {{book.title}}
+          </a>
+          <span *ngFor="let author of book.authors">
+              {{author.name + ' ' + author.lastName}}
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

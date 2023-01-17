@@ -4,6 +4,9 @@ import {BooksService} from "../books.service";
 import {GenresService} from "../genres.service";
 import {AwardsService} from "../awards.service";
 import {Award} from "../award";
+import {UsersService} from "../users.service";
+import {Observable} from "rxjs";
+import {User} from "../user";
 
 @Component({
   selector: 'app-home',
@@ -16,13 +19,16 @@ export class HomeComponent implements OnInit {
   booksCount:number = 0
   genresCount:number = 0
   awards: Award[] = []
+  user$: Observable<User | undefined>
 
   constructor(
     private readonly authorService: AuthorsService,
     private readonly bookService: BooksService,
     private readonly genreService: GenresService,
-    private readonly awardService: AwardsService
+    private readonly awardService: AwardsService,
+  private readonly userService: UsersService
   ) {
+    this.user$ = userService.onUserChange()
     this.authorService.getAll()
       .subscribe(value => {
         this.authorsCount = value.length

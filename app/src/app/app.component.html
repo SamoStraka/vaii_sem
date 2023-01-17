@@ -20,6 +20,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="contact" routerLinkActive="link-active">Kontakt</a>
         </li>
+        <li *ngIf="user$ | async as user" class="nav-item">
+          <a class="nav-link" routerLink="reservation/manage" routerLinkActive="link-active">Rezervácie</a>
+        </li>
       </ul>
       <span class="navbar-text">
                 Experta

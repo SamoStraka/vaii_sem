@@ -47,6 +47,7 @@ body {
 .author-books div {
   width: 30%;
   margin-top: 1rem;
+  margin-left: .5rem;
 }
 
 .author-books div img {
@@ -87,11 +88,5 @@ body {
   }
 }
 
-.btn-submit {
-  background-color: var(--red);
-  color: var(--natural);
-}
 
-.btn-submit:hover {
-  background-color: var(--pink);
-}
+

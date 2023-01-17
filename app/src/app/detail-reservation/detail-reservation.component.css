@@ -1,0 +1,74 @@
+body {
+  background-color: var(--natural);
+}
+
+a {
+  text-decoration: none;
+}
+
+.detail h1{
+  color: var(--brown);
+  text-align: center;
+}
+
+.admin_buttons a {
+  text-decoration: none;
+  color: var(--red);
+  font-size: 1.3rem;
+}
+
+.admin_buttons a:hover {
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.reservation {
+  background-color: var(--brown);
+  padding: .4rem;
+  border-radius: .7rem;
+  margin-top: .5rem;
+}
+
+.reservation h4 {
+  padding: 0;
+  margin: 0;
+  color: var(--pink);
+}
+
+.reservation a {
+  color: var(--pink);
+}
+
+.reservation span {
+  font-size: .8rem;
+  color: var(--gray);
+}
+
+.reservation-book {
+  background-color: var(--gray);
+  padding: .2rem;
+}
+
+.reservation-book a {
+  color: var(--natural);
+}
+.reservation-book a span {
+  font-size: .65rem;
+}
+
+.reservation-book span {
+  font-size: .8rem;
+}
+
+.reservation-email {
+  margin-top: 2rem;
+  color: var(--gray);
+}
+
+
+.btn-submit {
+  margin-top: 1rem;
+}
+
+
+

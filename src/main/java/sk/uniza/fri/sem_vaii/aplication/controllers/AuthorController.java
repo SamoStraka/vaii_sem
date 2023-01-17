@@ -1,6 +1,8 @@
 package sk.uniza.fri.sem_vaii.aplication.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.uniza.fri.sem_vaii.aplication.assemblers.AuthorAssembler;
 import sk.uniza.fri.sem_vaii.aplication.dtos.AuthorDTO;
@@ -39,12 +41,12 @@ public class AuthorController {
     }
 
     @PostMapping()
-    AuthorDTO newAuthor(@Valid @RequestBody AuthorDTO authorDTO) {
+    ResponseEntity<AuthorDTO> newAuthor(@Valid @RequestBody AuthorDTO authorDTO) {
         if (authorService.getAuthor(authorDTO.getId()) != null) {
             throw new RuntimeException();
         }
 
-        return AuthorAssembler.toDto(authorService.addAuthor(authorDTO));
+    return new ResponseEntity<>(AuthorAssembler.toDto(authorService.addAuthor(authorDTO)), HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")

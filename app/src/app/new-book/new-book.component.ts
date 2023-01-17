@@ -21,6 +21,7 @@ export class NewBookComponent implements OnInit {
   releaseYear: number = new Date().getFullYear()
   numberOfPages: number = 0
   info: string = ''
+  available: number = 0
   genres: Genre[] = []
   selectedGenres: Genre[] = []
   selectedGenre: number = 0
@@ -108,7 +109,9 @@ export class NewBookComponent implements OnInit {
           info: this.info,
           authors: this.selectedAuthors,
           bookGenres: this.selectedGenres,
-          language: language
+          language: language,
+          available: this.available,
+          bookReservations: []
         }
         this.bookService.add(book)
           .subscribe(() => {

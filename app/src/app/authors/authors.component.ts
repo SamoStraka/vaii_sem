@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthorsService} from "../authors.service";
 import {Author} from "../author";
+import {User} from "../user";
+import {Observable} from "rxjs";
+import {UsersService} from "../users.service";
 
 @Component({
   selector: 'app-authors',
@@ -10,9 +13,14 @@ import {Author} from "../author";
 export class AuthorsComponent implements OnInit {
 
   authors: Author[] = []
+  user$: Observable<User | undefined>
 
-  constructor(private readonly authorService: AuthorsService) {
-   this.reload()
+  constructor(
+    private readonly authorService: AuthorsService,
+    private readonly userService: UsersService
+  ) {
+    this.reload()
+    this.user$ = userService.onUserChange()
   }
 
   private reload() {

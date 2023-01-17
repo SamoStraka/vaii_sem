@@ -1,8 +1,7 @@
 <div class="search d-flex justify-content-around">
   <h1>Autori</h1>
-  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
 </div>
-<div class="administration d-flex justify-content-center">
+<div *ngIf="user$ | async as user" class="administration d-flex justify-content-center">
   <a class="btn btn-submit" routerLink="new">Nový autor</a>
 </div>
 <div class="container">
@@ -16,46 +15,31 @@
           <h3 class="cursor-pointer" [routerLink]="[author.id, 'detail']">{{author.name + ' ' + author.lastName}}</h3>
           <p>
             {{cutString(author.info)}}
-            <a [routerLink]="[author.id, 'detail']">
+            <a *ngIf="author.info.length > 180" [routerLink]="[author.id, 'detail']">
               viac
             </a>
           </p>
         </div>
       </div>
-      <div class="author-books d-flex justify-content-around">
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
+      <div  class="author-books d-flex justify-content-start">
+        <div *ngFor="let book of author.authorBooks " class="d-flex flex-column align-items-center">
+          <img src="../../assets/img/book.jpg" alt="fake img" >
+          <a [routerLink]="'../books/' + book.id + '/detail'" class="text-center">
+            <span>
+              {{book.title}}
+            </span>
+          </a>
         </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
-        </div>
-        <div>
-          <img src="../../assets/img/book.jpg" alt="fake img">
-          <p>Nazov knihy</p>
+        <div *ngIf="author.authorBooks.length == 0">
+          <p>Od tohto autora neevidujeme žiadne knihy</p>
         </div>
       </div>
-      <div class="admin_buttons d-flex justify-content-end">
+      <div *ngIf="user$ | async as user" class="admin_buttons d-flex justify-content-end">
         <a class="author_icon" [routerLink]="[author.id, 'edit']"><i class="bi bi-pencil-fill"></i></a>
         <a class="author_icon" (click)="delete(author)"><i class="bi bi-trash-fill"></i></a>
       </div>
     </div>
   </div>
-
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">&raquo;</a>
-      </li>
-    </ul>
-  </nav>
 
   <div class="quote">
     <h4>

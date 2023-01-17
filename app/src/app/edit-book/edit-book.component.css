@@ -47,3 +47,16 @@ form {
   }
 }
 
+.name {
+  font-size: .8rem;
+  color: var(--gray);
+}
+
+.remove {
+  font-size: 1.2rem;
+  color: var(--red);
+}
+
+.remove:hover {
+  cursor: pointer;
+}

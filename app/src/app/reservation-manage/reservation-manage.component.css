@@ -1,0 +1,83 @@
+body {
+  background-color: var(--natural);
+}
+
+a {
+  text-decoration: none;
+}
+
+.kontakt h1{
+  color: var(--brown);
+  text-align: center;
+}
+
+.card-contact {
+  background-color: var(--brown);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.kontakt span {
+  color: var(--natural);
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+.kontakt h2 {
+  color: var(--natural);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.admin_buttons a {
+  text-decoration: none;
+  color: var(--red);
+  font-size: 1.3rem;
+}
+
+.admin_buttons a:hover {
+  cursor: pointer;
+  color: var(--gray);
+}
+
+.reservation {
+  background-color: var(--brown);
+  padding: .4rem;
+  border-radius: .7rem;
+  margin-top: .5rem;
+}
+
+.reservation h4 {
+  padding: 0;
+  margin: 0;
+  color: var(--pink);
+}
+
+.reservation span {
+  font-size: .8rem;
+  color: var(--gray);
+}
+
+.reservation-book {
+  background-color: var(--gray);
+  padding: .2rem;
+}
+
+.reservation-book a {
+  color: var(--natural);
+}
+.reservation-book a span {
+  font-size: .65rem;
+}
+
+.reservation-book span {
+  font-size: .8rem;
+}
+
+
+
+

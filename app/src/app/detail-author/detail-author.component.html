@@ -1,6 +1,34 @@
-<div class="col-3 author-photo">
-  <img src="../../assets/img/face.jpg" alt="fake img">
+<div class="container">
+  <div class="row">
+    <div class="col-4 col-md-3 author-photo" >
+      <img src="../../assets/img/face.jpg" alt="Author Photo" class="w-100">
+    </div>
+    <div class="col-md-9 author-info">
+      <h1>{{this.author.name + ' ' + this.author.lastName}}</h1>
+      <p *ngIf="!this.more">
+        {{this.cutString(this.author.info, 500)}}
+        <span *ngIf="this.author.info.length > 500" (click)="show()">viac</span>
+      </p>
+      <p *ngIf="this.more">
+        {{this.author.info}}
+        <span (click)="show()">menej</span>
+      </p>
+    </div>
+  </div>
+  <div class="books">
+    <h3>Napísané knihy</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
+      <div *ngFor="let book of author.authorBooks" class="col d-flex flex-row align-items-center single-book">
+        <img src="../../assets/img/book.jpg" alt="fake img" class="w-25" >
+        <a [routerLink]="'../../../books/' + book.id + '/detail'" class="text-center">
+            <h4>
+              {{book.title}}
+            </h4>
+            <p>
+              {{this.cutString(book.info, 100)}}
+            </p>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
-<h1>
-  {{this.author.name + ' ' + this.author.lastName}}
-</h1>

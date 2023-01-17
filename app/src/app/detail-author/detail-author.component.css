@@ -1,0 +1,45 @@
+.author-info h1 {
+  color: var(--red);
+}
+
+.author-info p{
+  color: var(--gray);
+}
+
+.author-info span {
+  color: var(--pink);
+}
+
+.author-info span:hover {
+  cursor: pointer;
+}
+
+.books h3 {
+  color: var(--pink);
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+.author-photo {
+  margin: 0 auto;
+}
+
+.books h4{
+  color: var(--pink);
+}
+
+.single-book {
+  transition: 1s;
+  padding: .3rem;
+}
+
+.single-book:hover {
+  background-color: var(--natural);
+  border-radius: 1rem;
+}
