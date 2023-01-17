@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "awards", schema = "public")
@@ -16,6 +17,7 @@ public class Award {
     @Id
     private Long id;
 
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     private Long priority;

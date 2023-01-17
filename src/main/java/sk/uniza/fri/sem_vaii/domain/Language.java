@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,7 @@ import java.util.Set;
 public class Language {
     private @Id
     Long id;
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @JsonIgnore

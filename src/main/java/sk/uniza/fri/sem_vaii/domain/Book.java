@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import java.util.Set;
 public class Book {
     private @Id Long id;
     private String isbn;
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
     @Column(name = "release_year")
